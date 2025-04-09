@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Select Table - Song's Serving</title>
     <link rel="stylesheet" href="/css/select-table.css">
+    <script>
+        function selectTable(tableNumber) {
+            window.location.href = "/request-items?table=" + tableNumber;
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -17,12 +22,5 @@
     </div>
 </div>
 
-<script>
-    function selectTable(tableNumber) {
-        // 나중에 fetch로 Flask API 호출하도록 연결하면 됨
-        alert("You selected Table " + tableNumber);
-        // 예: fetch(`/select?table=${tableNumber}`);
-    }
-</script>
 </body>
 </html>
