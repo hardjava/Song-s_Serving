@@ -14,7 +14,7 @@ import java.util.Map;
 @Controller
 public class RequestController {
 
-    @Value("{flask.url.request-items}")
+    @Value("${flask.url.request-items}")
     private String flaskRequestUrl;
 
     @GetMapping("/request-items")
@@ -33,10 +33,10 @@ public class RequestController {
         boolean callStaff = params.containsKey("callStaff");
 
         RestTemplate restTemplate = new RestTemplate();
-
         Map<String, Object> body = new HashMap<>();
-        body.put("table", table);
         Map<String, Integer> items = new HashMap<>();
+
+        body.put("table", table);
         items.put("water", water);
         items.put("coke", coke);
         items.put("tissue", tissue);
