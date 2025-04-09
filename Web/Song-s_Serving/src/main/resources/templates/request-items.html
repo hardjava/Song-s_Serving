@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Items</title>
+    <link rel="stylesheet" href="/css/request-items.css">
+    <script>
+        function validateForm() {
+            const water = parseInt(document.querySelector('input[name="water"]').value) || 0;
+            const coke = parseInt(document.querySelector('input[name="coke"]').value) || 0;
+            const tissue = parseInt(document.querySelector('input[name="tissue"]').value) || 0;
+            const spoon = parseInt(document.querySelector('input[name="spoon"]').value) || 0;
+            const callStaff = document.querySelector('input[name="callStaff"]').checked;
+
+            if (water === 0 && coke === 0 && tissue === 0 && spoon === 0 && !callStaff) {
+                alert("Please select at least one item or call staff.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>Request Items for Table [[${table}]]</h1>
+    <form action="/send-request" method="post" onsubmit="return validateForm()">
+        <input type="hidden" name="table" th:value="${table}">
+
+        <label>Water: <input type="number" name="water" value="0" min="0"></label>
+        <label>Coke: <input type="number" name="coke" value="0" min="0"></label>
+        <label>Tissue: <input type="number" name="tissue" value="0" min="0"></label>
+        <label>Spoon: <input type="number" name="spoon" value="0" min="0"></label>
+
+        <label style="margin-top: 15px;">
+            Employee Call: <input type="checkbox" name="callStaff">
+        </label>
+
+        <div>
+            <button type="submit">Send Request</button>
+            <button type="button" onclick="window.location.href='/'">Back</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
