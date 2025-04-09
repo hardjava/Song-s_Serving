@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Table - Song's Serving</title>
+    <link rel="stylesheet" href="/css/select-table.css">
+</head>
+<body>
+<div class="container">
+    <h1>Select Your Table</h1>
+    <p>Click on your table to begin your smart serving experience.</p>
+    <div class="table-grid">
+        <button class="table-btn" onclick="selectTable(1)">Table 1</button>
+        <button class="table-btn" onclick="selectTable(2)">Table 2</button>
+        <button class="table-btn" onclick="selectTable(3)">Table 3</button>
+        <button class="table-btn" onclick="selectTable(4)">Table 4</button>
+    </div>
+</div>
+
+<script>
+    function selectTable(tableNumber) {
+        // 나중에 fetch로 Flask API 호출하도록 연결하면 됨
+        alert("You selected Table " + tableNumber);
+        // 예: fetch(`/select?table=${tableNumber}`);
+    }
+</script>
+</body>
+</html>

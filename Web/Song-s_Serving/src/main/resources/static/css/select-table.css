@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #1e3c72; /* dark gradient */
+    background: linear-gradient(to right, #2a5298, #1e3c72);
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+}
+
+.table-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 150px);
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.table-btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 20px;
+    border: none;
+    background-color: white;
+    color: #1e3c72;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.table-btn:hover {
+    background-color: #e0e0e0;
+}
