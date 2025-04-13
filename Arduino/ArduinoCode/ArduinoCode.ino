@@ -74,6 +74,7 @@ void loop()
           turn_left();
           delay(200);
           is_delivered=true;
+          previous_ir_left = false;
         }
       }
     }
@@ -88,6 +89,7 @@ void loop()
       {
         activated = false;
         is_delivered = false;
+        intersection_count = 0;
       }
     }
   }
