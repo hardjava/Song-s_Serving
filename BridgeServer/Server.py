@@ -1,11 +1,14 @@
 from flask import Flask, request, jsonify
+from Arduino import *
 import tkinter as tk
 import threading
 import queue
 
-# Flask 서버 초기화
 app = Flask(__name__)
 request_queue = queue.Queue()
+arduino = ArduinoController(port='COM5', baud_rate=9600)
+arduino.connect()
+
 
 def tkinter_mainloop():
     root = tk.Tk()
@@ -26,11 +29,17 @@ def tkinter_mainloop():
             if call_staff:
                 tk.Label(popup, text="Employee Call !", font=("Arial", 14), fg="red").pack(pady=10)
 
-#            def on_confirm():
-#                print(f"[INFO] 로봇 출동 - Table {table}, Items: {items}, Staff Call: {call_staff}")
-#                popup.destroy()
+            def move_robot():
+                print(f"[INFO] - Table {table}, Items: {items}, Staff Call: {call_staff}")
+                arduino.write_arduino(str(table))
+                popup.destroy()
 
-#            tk.Button(popup, text="로봇 출동하기", command=on_confirm, font=("Arial", 12)).pack(pady=20)
+            def cancel():
+                print(f"[INFO] - Table {table}, Items: {items}, Staff Call: {call_staff}")
+                popup.destroy()
+
+            tk.Button(popup, text="Send Robot", command=move_robot, font=("Arial", 12)).pack(pady=20)
+            tk.Button(popup, text="Cancel", command=cancel, font=("Arial", 12)).pack(pady=20)
 
         except queue.Empty:
             pass
@@ -38,6 +47,7 @@ def tkinter_mainloop():
 
     check_queue()
     root.mainloop()
+
 
 @app.route('/request-items', methods=['POST'])
 def handle_request():
@@ -50,10 +60,16 @@ def handle_request():
 
     return jsonify({"status": "received"})
 
-def run_flask():
-    app.run(port=9000)
 
-# 진입점
+@app.route('/ping')
+def ping():
+    return "pong"
+
+
+def run_flask():
+    app.run(host='0.0.0.0', port=5000)
+
+
 if __name__ == '__main__':
     threading.Thread(target=run_flask, daemon=True).start()
     tkinter_mainloop()
