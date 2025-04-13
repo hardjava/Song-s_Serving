@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class TableController {
     @GetMapping("/select-table")
     public String selectTablePage() {
-        return "select-table";  // templates/select-table.html 로 연결
+        return "select-table";
     }
 }

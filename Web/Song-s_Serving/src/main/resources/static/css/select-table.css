@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: #1e3c72; /* dark gradient */
+    background: #1e3c72;
     background: linear-gradient(to right, #2a5298, #1e3c72);
     font-family: 'Segoe UI', sans-serif;
     color: white;
